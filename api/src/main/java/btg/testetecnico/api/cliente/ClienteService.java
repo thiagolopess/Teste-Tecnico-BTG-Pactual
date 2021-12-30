@@ -12,8 +12,7 @@ public class ClienteService {
 	private ClienteRepository clienteRepository;
 
 	public List<Cliente> getClientes() {
-		List<Cliente> clientes = clienteRepository.findAll();
-		return clientes;
+		return clienteRepository.findAll();
 	}
 
 	public void registerCliente(Cliente cliente) {
