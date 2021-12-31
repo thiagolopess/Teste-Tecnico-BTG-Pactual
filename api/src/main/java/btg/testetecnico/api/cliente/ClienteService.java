@@ -25,7 +25,11 @@ public class ClienteService {
 	}
 
 	public void deleteCliente(String cpf) {
-		clienteRepository.deleteById(cpf);
+		Cliente cliente = clienteRepository.findById(cpf).isPresent() ? clienteRepository.findById(cpf).get() : null;
+		if (cliente == null) {
+			throw new IllegalArgumentException("Cliente de CPF " + cpf + " não encontrado.");
+		}
+		clienteRepository.delete(cliente);
 	}
 
 	public Cliente getCliente(String cpf) {
