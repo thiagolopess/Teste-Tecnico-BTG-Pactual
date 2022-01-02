@@ -1,7 +1,7 @@
 -- Cria tabela `movimentacao` (DDL)
 CREATE TABLE IF NOT EXISTS movimentacao (
   id BIGINT NOT NULL AUTO_INCREMENT,
-  valor FLOAT NOT NULL,
+  valor DECIMAL(10, 2) NOT NULL,
   dt_hora DATETIME NOT NULL,
   tipo ENUM('SAQUE', 'DEPOSITO') NOT NULL,
   num_conta BIGINT NOT NULL,
@@ -9,12 +9,12 @@ CREATE TABLE IF NOT EXISTS movimentacao (
   CONSTRAINT MOVIMENTACAO_CONTA FOREIGN KEY(num_conta) REFERENCES CONTA(num_conta)
 ) engine = innoDB AUTO_INCREMENT = 1;
 
--- Cria trigger de verificação e atualização no saldo antes de cada movimentação (DDL)
+-- Cria trigger de verificação e atualização do saldo antes de cada movimentação (DDL)
 CREATE TRIGGER before_movimentacao_insert
 BEFORE INSERT
 ON movimentacao FOR EACH ROW
 BEGIN
-    DECLARE saldo FLOAT;
+    DECLARE saldo DECIMAL(10, 2);
 
     SELECT c.saldo
     INTO saldo
