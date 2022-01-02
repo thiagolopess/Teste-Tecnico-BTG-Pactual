@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -27,8 +28,8 @@ public class Conta {
 	@NotNull(message = "A agência é obrigatória")
 	private int agencia;
 
-	@Column
-	private Float saldo = 0f;
+	@Column(columnDefinition = "DECIMAL(10, 2)")
+	private BigDecimal saldo = BigDecimal.ZERO;
 
 	@Column
 	@NotNull(message = "A data de abertura da conta é obrigatória")

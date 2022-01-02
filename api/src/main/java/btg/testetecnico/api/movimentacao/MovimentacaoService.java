@@ -5,6 +5,7 @@ import btg.testetecnico.api.conta.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -39,10 +40,10 @@ public class MovimentacaoService {
 		movimentacaoRepository.save(movimentacao);
 	}
 
-	private void checkSaldo(Long numConta, Float valor) {
+	private void checkSaldo(Long numConta, BigDecimal valor) {
 		Conta conta = contaRepository.findById(numConta).get();
 
-		if (conta.getSaldo() < valor) {
+		if (conta.getSaldo().compareTo(valor) < 0) {
 			throw new RuntimeException("Operação cancelada. Saldo insuficiente.");
 		}
 	}

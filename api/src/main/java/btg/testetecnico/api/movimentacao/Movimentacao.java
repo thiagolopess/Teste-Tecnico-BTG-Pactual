@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
@@ -22,9 +23,9 @@ public class Movimentacao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column
+	@Column(columnDefinition = "DECIMAL(10, 2)")
 	@NotNull(message = "O valor da movimentação é obrigatório")
-	private Float valor;
+	private BigDecimal valor;
 
 	@Column
 	private LocalDateTime dtHora = LocalDateTime.now();
