@@ -84,7 +84,7 @@ public class Cliente {
 	private String cidade;
 
 	@JsonIgnore
-	@OneToOne(mappedBy = "cliente")
+	@OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private Conta conta;
 
 	public int getIdade() {
