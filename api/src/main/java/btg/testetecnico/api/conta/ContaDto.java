@@ -8,6 +8,9 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class ContaDto {
+	public ContaDto() {
+	}
+
 	private Long numConta;
 	private int agencia;
 	private Float saldo;
