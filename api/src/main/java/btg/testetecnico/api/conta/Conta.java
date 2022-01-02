@@ -1,7 +1,6 @@
 package btg.testetecnico.api.conta;
 
 import btg.testetecnico.api.cliente.Cliente;
-import btg.testetecnico.api.movimentacao.Movimentacao;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +9,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -39,8 +37,4 @@ public class Conta {
 	@OneToOne
 	@JoinColumn(name = "cpf", referencedColumnName = "cpf")
 	private Cliente cliente;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
-	private List<Movimentacao> movimentacoes;
 }

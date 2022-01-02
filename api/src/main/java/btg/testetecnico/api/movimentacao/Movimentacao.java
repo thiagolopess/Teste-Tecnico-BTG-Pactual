@@ -36,7 +36,7 @@ public class Movimentacao {
 	private TipoMovimentacao tipo;
 
 	@JsonIgnore
+	@JoinColumn(name = "numConta", referencedColumnName = "numConta")
 	@ManyToOne
-	@JoinColumn(name = "numConta")
 	private Conta conta;
 }
