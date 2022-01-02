@@ -10,7 +10,6 @@ import java.util.List;
 @RestController
 @RequestMapping("api/cliente")
 public class ClienteController{
-
 	@Autowired
 	private ClienteService clienteService;
 
@@ -29,7 +28,7 @@ public class ClienteController{
 		try {
 			clienteService.registerCliente(cliente);
 		} catch (Exception e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
+			return ResponseEntity.badRequest().body("Erro ao registrar cliente: " + e.getMessage());
 		}
 		return ResponseEntity.ok("Cliente cadastrado com sucesso!");
 	}
@@ -39,7 +38,7 @@ public class ClienteController{
 		try {
 			clienteService.deleteCliente(cpfCliente);
 		} catch (Exception e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
+			return ResponseEntity.badRequest().body("Erro ao deletar cliente: " + e.getMessage());
 		}
 		return ResponseEntity.ok("Cliente deletado com sucesso!");
 	}
@@ -47,13 +46,10 @@ public class ClienteController{
 	@PutMapping("/update")
 	public ResponseEntity<String> updateCliente(@RequestBody Cliente cliente) {
 		try {
-
 			clienteService.updateCliente(cliente);
 		} catch (Exception e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
+			return ResponseEntity.badRequest().body("Erro ao atualizar cliente: " + e.getMessage());
 		}
 		return ResponseEntity.ok("Cliente atualizado com sucesso!");
 	}
-
-
 }

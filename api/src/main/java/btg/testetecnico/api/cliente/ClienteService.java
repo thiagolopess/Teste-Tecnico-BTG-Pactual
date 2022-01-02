@@ -7,7 +7,6 @@ import java.util.List;
 
 @Service
 public class ClienteService {
-
 	@Autowired
 	private ClienteRepository clienteRepository;
 
@@ -59,5 +58,4 @@ public class ClienteService {
 			throw new IllegalArgumentException("Número de celular já cadastrado no sistema.");
 		}
 	}
-
 }

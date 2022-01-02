@@ -1,5 +1,7 @@
 package btg.testetecnico.api.cliente;
 
+import btg.testetecnico.api.conta.Conta;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +17,6 @@ import java.time.Period;
 @Entity
 @Table
 public class Cliente {
-
 	public Cliente() {
 	}
 
@@ -82,8 +83,11 @@ public class Cliente {
 	@NotNull(message = "A cidade é obrigatória")
 	private String cidade;
 
+	@JsonIgnore
+	@OneToOne(mappedBy = "cliente")
+	private Conta conta;
+
 	public int getIdade() {
 		return Period.between(this.dtNascimento, LocalDate.now()).getYears();
 	}
-
 }
