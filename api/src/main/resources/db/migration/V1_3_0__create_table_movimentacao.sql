@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS movimentacao (
   id BIGINT NOT NULL AUTO_INCREMENT,
-  valor FLOAT NOT NULL,
+  valor DECIMAL(10, 2) NOT NULL,
   dt_hora DATETIME NOT NULL,
   tipo ENUM('SAQUE', 'DEPOSITO') NOT NULL,
   num_conta BIGINT NOT NULL,
@@ -14,7 +14,7 @@ CREATE TRIGGER before_movimentacao_insert
 BEFORE INSERT
 ON movimentacao FOR EACH ROW
 BEGIN
-    DECLARE saldo FLOAT;
+    DECLARE saldo DECIMAL(10, 2);
 
     SELECT c.saldo
     INTO saldo
