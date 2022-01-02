@@ -4,6 +4,7 @@ import btg.testetecnico.api.cliente.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,8 +15,14 @@ public class ContaService {
 	@Autowired
 	ClienteRepository clienteRepository;
 
-	public List<Conta> getContas() {
-		return contaRepository.findAll();
+	public List<ContaDto> getContas() {
+		List<Conta> contas = contaRepository.findAll();
+		List<ContaDto> dtoContas = new ArrayList<>();
+		for (Conta conta : contas) {
+			dtoContas.add(ContaDto.convertToDto(conta));
+		}
+
+		return dtoContas;
 	}
 
 	public Conta getConta(Long numConta) {

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -13,7 +14,7 @@ public class ContaController {
 	private ContaService contaService;
 
 	@GetMapping
-	public ResponseEntity<List<Conta>> getContas() {
+	public ResponseEntity<List<ContaDto>> getContas() {
 		return ResponseEntity.ok(contaService.getContas());
 	}
 
@@ -23,7 +24,7 @@ public class ContaController {
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<String> registerConta(@RequestBody ContaDto conta) {
+	public ResponseEntity<String> registerConta(@Valid @RequestBody ContaDto conta) {
 		try {
 			return ResponseEntity.ok(contaService.registerConta(conta));
 		} catch (Exception e) {
