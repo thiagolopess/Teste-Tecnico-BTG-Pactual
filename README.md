@@ -31,6 +31,8 @@ Uma **CONTA** pode realizar várias **MOVIMENTACOES**, e uma   **MOVIMENTACAO** 
 
 Banco de dados utilizado: **MySQL 8.0**
 
+Os scripts DDL e DML podem ser encontrados na pasta [docs/scripts](docs/scripts)
+
 ## API
 
 ### Descrição
